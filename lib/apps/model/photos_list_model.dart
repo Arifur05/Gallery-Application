@@ -18,7 +18,7 @@ class PhotosListModel {
     this.downloadUrl,
   });
 
-  final int? id;
+  final String? id;
   final String? author;
   final int? width;
   final int? height;
