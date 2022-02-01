@@ -8,21 +8,32 @@ import 'home_screens_state.dart';
 
 
 class HomeScreenBloc extends Cubit<HomeScreenState> {
-  HomeScreenBloc({required this.photosRepository})
-      : super(PhotosLoadingState());
+  HomeScreenBloc({required this.photosRepository}) : super(PhotosEmptyState());
 
   final PhotosListRepository photosRepository;
+  int page = 1;
+  //late List<PhotosListModel> photos;
+  void getPhotosData(){
+    //print("called");
+    if (state is PhotosLoadingState) return;
 
-  late List<PhotosListModel> photos;
-  void getPhotosData()async{
-    print("called");
-    emit(PhotosLoadingState());
-    // try {
-      photos = await photosRepository.getPhotosList();
-      emit(PhotosLoadedState(photos: photos));
-    // }
-    // catch (e){
-    //   throw e;
-    // }
+    final currentState = state;
+    //print(currentState);
+    var photos = <PhotosListModel>[];
+    if (currentState is PhotosLoadedState) {
+      photos = currentState.newPhotos;
+    }
+    emit(PhotosLoadingState(photos, isfirstfetch: page == 1 ));
+     photosRepository.getPhotosList(page:page).then((newPhotos) {
+       page++;
+       final photos = (state as PhotosLoadingState).photos;
+       photos.addAll(newPhotos);
+        print(photos.length);
+       emit(PhotosLoadedState(photos));
+     });
+
+    //print(currentState);
+    //emit(PhotosLoadedState(photos: photos));
+
   }
   }
