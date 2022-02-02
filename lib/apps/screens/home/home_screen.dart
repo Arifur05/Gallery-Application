@@ -1,5 +1,11 @@
 import 'dart:async';
-import 'dart:math';
+/**
+ * @author : Arif
+ * @date : 2/3/2022-02-2022 12:31 AM
+ * @package : com.arifur.gallery_application
+ * -------------------------------------------
+ * Copyright (C) 2022 - All Rights Reserved
+ **/
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +14,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery_application/apps/model/photos_list_model.dart';
 import 'package:gallery_application/general/text_style.dart';
 
-import '../full_screen_image_screen.dart';
+import '../wallpaper_screen/full_screen_image_screen.dart';
 import 'bloc/home_screen_bloc.dart';
 import 'bloc/home_screen_event.dart';
 import 'bloc/home_screens_state.dart';
