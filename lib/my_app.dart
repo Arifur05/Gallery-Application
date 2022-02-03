@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'apps/repositories/photo_list_repository.dart';
 import 'apps/screens/home/bloc/home_screen_bloc.dart';
 import 'apps/screens/home/home_screen.dart';
+import 'apps/screens/splash_screen.dart';
 import 'general/app_config.dart';
 
 class MyApp extends StatelessWidget {
@@ -18,14 +19,9 @@ class MyApp extends StatelessWidget {
     var config = AppConfig.of(context);
     return MaterialApp(
       //title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      //theme: config!.themeData,
       debugShowCheckedModeBanner: false,
-      home: BlocProvider<HomeScreenBloc>(
-        create: (context) => HomeScreenBloc(photosRepository: PhotosListRepository(baseUrl: config!.baseUrl)),
-        child: HomeScreen(),
-      ),
+      home: SplashScreen(baseUrl: config!.baseUrl),
     );
   }
 }

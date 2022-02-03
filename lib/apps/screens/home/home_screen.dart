@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery_application/apps/model/photos_list_model.dart';
+import 'package:gallery_application/general/skeleton_loader.dart';
 import 'package:gallery_application/general/text_style.dart';
 
 import '../wallpaper_screen/full_screen_image_screen.dart';
@@ -38,6 +39,15 @@ class HomeScreen extends StatelessWidget {
     BlocProvider.of<HomeScreenBloc>(context).getPhotosData();
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Center(
+            child: SizedBox(
+              width: 300,
+              child: Image.asset('assets/images/appbar.png'),
+            ),
+          ),
+        ),
           body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -61,7 +71,7 @@ class HomeScreen extends StatelessWidget {
         builder: (context, state) {
       if (state is PhotosLoadingState && state.isfirstfetch) {
         //BlocProvider.of<HomeScreenBloc>(context).getPhotosData();
-        return _loadingIndicator();
+        return const Expanded(child: ListSkeletonLoader());
       }
       List<PhotosListModel> photosList = [];
       bool isLoading = false;
@@ -83,6 +93,7 @@ class HomeScreen extends StatelessWidget {
         child: GridView.custom(
           controller: scrollController,
           shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
           gridDelegate: SliverWovenGridDelegate.count(
             crossAxisCount: 2,
             mainAxisSpacing: 2,
@@ -128,16 +139,22 @@ class HomeScreen extends StatelessWidget {
         );
       },
       onLongPress: () {},
-      child: Card(
-        elevation: 6,
-        child: SizedBox(
-          height: 80.0,
-          width: 80.0,
-          child: Hero(
-            tag: index,
+      child: SizedBox(
+        height: 80.0,
+        width: 80.0,
+        child: Hero(
+          tag: index,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 2,
             child: CachedNetworkImage(
               imageUrl: photos.downloadUrl!,
               fit: BoxFit.cover,
+              fadeInCurve: Curves.easeIn,
+              fadeOutCurve: Curves.easeOut,
+              fadeOutDuration: const Duration(milliseconds: 1000),
               placeholder: (context, url) => const Center(
                 child: SizedBox(
                   child: CircularProgressIndicator(),

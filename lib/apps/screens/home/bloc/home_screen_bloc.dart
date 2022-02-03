@@ -6,13 +6,14 @@ import 'package:gallery_application/apps/repositories/photo_list_repository.dart
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'home_screen_event.dart';
 import 'home_screens_state.dart';
 
-class HomeScreenBloc extends Cubit<HomeScreenState> {
-  HomeScreenBloc({required this.photosRepository}) : super(PhotosEmptyState());
-
+class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
   final PhotosListRepository photosRepository;
   int page = 1;
+
+  HomeScreenBloc({required this.photosRepository}) : super(PhotosEmptyState());
 
   void getPhotosData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -22,10 +23,8 @@ class HomeScreenBloc extends Cubit<HomeScreenState> {
     if (state is PhotosLoadingState) return;
     var connectivityResult = await Connectivity().checkConnectivity();
 
-
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
-
       if (currentState is PhotosLoadedState) {
         photos = currentState.newPhotos;
       }
@@ -39,14 +38,12 @@ class HomeScreenBloc extends Cubit<HomeScreenState> {
         await prefs.setString('photos', encodedData);
         emit(PhotosLoadedState(photos));
       });
-    }
-    else {
+    } else {
       final photoEncodedString = prefs.getString('photos');
 
       final List<PhotosListModel> photosList =
-      photosListModelFromJson(photoEncodedString!);
+          photosListModelFromJson(photoEncodedString!);
       emit(PhotosLoadingErrorState(photosList));
     }
-
   }
 }

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:gallery_application/apps/screens/wallpaper_screen/wallpaper_bloc.dart';
@@ -31,7 +30,7 @@ class FullScreenImageScreen extends StatelessWidget {
                   minScale: 0.1,
                   maxScale: 1.6,
                   child: CachedNetworkImage(
-                    imageUrl: "https://picsum.photos/id/1003/1181/1772",
+                    imageUrl: image,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => const Center(
                       child: SizedBox(
@@ -50,13 +49,10 @@ class FullScreenImageScreen extends StatelessWidget {
                     ElevatedButton(
                         onPressed: () async {
                           var file = await DefaultCacheManager().getSingleFile(
-                              "https://picsum.photos/id/1003/1181/1772");
+                              image);
                           Share.shareFiles([file.path],
                               text:
                                   'Great picture'); // context.read<WallPaperBlock>().shareWallpaper(imageUrl: "https://picsum.photos/id/1003/1181/1772", context: context);
-                          Share.shareFiles(
-                            [file.path],
-                          );
                         },
                       child: const Center(
                           child: Icon(
@@ -105,7 +101,7 @@ class FullScreenImageScreen extends StatelessWidget {
 
   Widget _bottomSheet({required String imageUrl}) {
     return BlocBuilder<WallPaperBlock, void>(
-        builder: (context, String) => Container(
+        builder: (context, string) => Container(
               height: MediaQuery.of(context).size.height / 4,
               padding: const EdgeInsets.symmetric(vertical:16, horizontal: 32.0),
               child: Column(
@@ -140,15 +136,16 @@ class FullScreenImageScreen extends StatelessWidget {
                             context: context,
                             location: WallpaperManagerFlutter.BOTH_SCREENS);
                       },
-                      image: Icons.wallpaper_rounded),
+                      image: Icons.screen_lock_rotation),
                   const SizedBox(height: 10),
                   _bottomSheetOptions(
                       text: "Save To Media Folder",
                       onClick: () {
+
                         context.read<WallPaperBlock>().saveImageToGallery(
                             imageUrl: imageUrl, context: context);
                       },
-                      image: Icons.wallpaper_rounded),
+                      image: Icons.perm_media_outlined),
                 ],
               ),
             ));
@@ -161,14 +158,12 @@ class FullScreenImageScreen extends StatelessWidget {
   }) {
     return GestureDetector(
       onTap: onClick,
-      child: Container(
-        child: Row(
-          children: [
-            Icon(image),
-            const SizedBox(width: 10),
-            Text(text, style: TextStyles.generalTextStyle(fontSize: 14.0)),
-          ],
-        ),
+      child: Row(
+        children: [
+          Icon(image),
+          const SizedBox(width: 10),
+          Text(text, style: TextStyles.generalTextStyle(fontSize: 14.0)),
+        ],
       ),
     );
   }
