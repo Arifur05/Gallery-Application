@@ -16,7 +16,6 @@ import 'package:gallery_application/general/text_style.dart';
 
 import '../wallpaper_screen/full_screen_image_screen.dart';
 import 'bloc/home_screen_bloc.dart';
-import 'bloc/home_screen_event.dart';
 import 'bloc/home_screens_state.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -75,7 +74,9 @@ class HomeScreen extends StatelessWidget {
       }
       if (state is PhotosLoadedState) {
         photosList = state.newPhotos;
-        print(photosList.length);
+      }
+      if (state is PhotosLoadingErrorState){
+        photosList = state.cachePhotos;
       }
 
       return Expanded(

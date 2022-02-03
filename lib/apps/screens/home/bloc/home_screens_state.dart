@@ -32,8 +32,9 @@ class PhotosLoadedState extends HomeScreenState{
 }
 
 class PhotosLoadingErrorState extends HomeScreenState{
+  PhotosLoadingErrorState(this.cachePhotos);
+  final List<PhotosListModel> cachePhotos;
   @override
-  // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [cachePhotos];
 
 }

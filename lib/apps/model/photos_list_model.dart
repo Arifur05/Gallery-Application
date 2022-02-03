@@ -9,7 +9,7 @@ List<PhotosListModel> photosListModelFromJson(String str) => List<PhotosListMode
 String photosListModelToJson(List<PhotosListModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class PhotosListModel {
-  PhotosListModel({
+  PhotosListModel( {
     this.id,
     this.author,
     this.width,
