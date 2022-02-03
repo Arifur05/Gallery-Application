@@ -10,11 +10,7 @@ Bloc state management has been used development.
 - [ ] Share Wallpaper
 
 ## Screenshots
-![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_1.jpg?raw=true)
-![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_2.jpg?raw=true)
-![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_3.jpg?raw=true)
-![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_4.jpg?raw=true)
-![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_5.jpg?raw=true)
+![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_1.jpg?raw=true)![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_2.jpg?raw=true)![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_3.jpg?raw=true)![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_4.jpg?raw=true)![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_5.jpg?raw=true)
 
 ### libraries used
 flutter_bloc
