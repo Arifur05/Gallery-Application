@@ -18,35 +18,35 @@ class HomeScreenBloc extends Cubit<HomeScreenState> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final currentState = state;
-    //print(currentState);
     var photos = <PhotosListModel>[];
     if (state is PhotosLoadingState) return;
-    var connectivityResult = Connectivity().checkConnectivity();
-    if (connectivityResult != ConnectivityResult.mobile ||
-        connectivityResult != ConnectivityResult.wifi) {
-      final musicsString = await prefs.getString('photos');
-      print(musicsString);
+    var connectivityResult = await Connectivity().checkConnectivity();
 
-      final List<PhotosListModel> photosList =
-          photosListModelFromJson(musicsString!);
-      emit(PhotosLoadingErrorState(photosList));
-    }
-    else {
+
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+
       if (currentState is PhotosLoadedState) {
         photos = currentState.newPhotos;
       }
       emit(PhotosLoadingState(photos, isfirstfetch: page == 1));
-      photosRepository.getPhotosList(page: page).then((newPhotos) async {
+      photosRepository.getPhotosList(page: page).then((photoList) async {
         page++;
         final photos = (state as PhotosLoadingState).photos;
-        photos.addAll(newPhotos);
+        photos.addAll(photoList);
         prefs.clear();
         String encodedData = jsonEncode(photos);
-        print("encode:" + encodedData);
         await prefs.setString('photos', encodedData);
         emit(PhotosLoadedState(photos));
       });
     }
-    print(currentState);
+    else {
+      final photoEncodedString = prefs.getString('photos');
+
+      final List<PhotosListModel> photosList =
+      photosListModelFromJson(photoEncodedString!);
+      emit(PhotosLoadingErrorState(photosList));
+    }
+
   }
 }

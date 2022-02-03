@@ -50,6 +50,26 @@ android {
         versionName flutterVersionName
     }
 
+    flavorDimensions "app"
+
+    productFlavors {
+
+        main_dev{
+            dimension "app"
+            applicationId "com.arifur.gallery_application.main_dev"
+            versionCode 1
+            versionName "1.0"
+        }
+
+        main_prod{
+            dimension "app"
+            applicationId "com.arifur.gallery_application.main_prod"
+            versionCode 1
+            versionName "1.0"
+        }
+
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
