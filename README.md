@@ -1,16 +1,33 @@
-# gallery_application
+# Wallpaper Basket
 
-Gallery Application
+A simple wallpaper app made using **Flutter** and [picsum.photos](https://picsum.photos)api. Using this app an user can download prefferd wallpaper, save wallpaper and also can share.
+Bloc state management has been used development.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- [ ] Dowmnload wallpaper
+- [ ] Save Wallpaper
+- [ ] Share Wallpaper
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
+![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_1.jpg?raw=true)
+![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_2.jpg?raw=true)
+![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_3.jpg?raw=true)
+![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_4.jpg?raw=true)
+![](https://github.com/Arifur05/flutter_login_UI/blob/master/screenshots/wallpaper_basket_5.jpg?raw=true)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### libraries used
+flutter_bloc
+http
+dio
+cached_network_image
+equatable
+connectivity_plus
+flutter_staggered_grid_view
+permission_handler
+image_gallery_saver
+wallpaper_manager_flutter
+share_plus
+shared_preferences
+skeleton_loader
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

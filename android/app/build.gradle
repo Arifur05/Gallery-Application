@@ -50,6 +50,11 @@ android {
         versionName flutterVersionName
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
+
     flavorDimensions "app"
 
     productFlavors {
