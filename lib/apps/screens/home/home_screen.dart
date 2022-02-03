@@ -80,7 +80,6 @@ class HomeScreen extends StatelessWidget {
 
         photosList = state.photos;
         isLoading = true;
-        print(photosList.length);
       }
       if (state is PhotosLoadedState) {
         photosList = state.newPhotos;

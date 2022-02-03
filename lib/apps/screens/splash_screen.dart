@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gallery_application/apps/repositories/photo_list_repository.dart';
@@ -21,7 +20,7 @@ class SplashScreen extends StatelessWidget{
           future: Future.delayed(const Duration(milliseconds: 3000)),
           builder: (context, snapshot) {
             if(snapshot.connectionState == ConnectionState.waiting){
-              return Splash();
+              return const Splash();
             }
             else {
               // return Splash();

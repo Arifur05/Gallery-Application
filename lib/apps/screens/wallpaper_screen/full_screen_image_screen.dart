@@ -15,7 +15,6 @@ class FullScreenImageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(image.toString());
     return SafeArea(
       child: Scaffold(
         body: Hero(
